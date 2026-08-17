@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>masterchef4many | good food for everyone</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Preconnect to image CDNs used across the site -->
+    <link rel="preconnect" href="https://static.wixstatic.com">
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://cdn.prod.website-files.com">
+    <link rel="dns-prefetch" href="https://static.wixstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#B34522',
+                            'dark-orange': '#FDE2DC',
+                            cream: '#FDF9F9',
+                            charcoal: '#1A1A1A',
+                            'orange-light': '#FDE2DC',
+                            border: '#F3D0C9'
+                        }
+                    },
+                    fontFamily: {
+                        display: ["DM Serif Display", "serif"],
+                        sans: ["DM Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+
+    <style type="text/css">
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar { display: none; }
+            .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #FDF9F9;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #progress-bar {
+            transition: width 0.1s linear;
+        }
+
+        .carousel-item {
+            display: none;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+        
+        .nav-link.active {
+            background-color: white;
+            color: #B34522;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .vision-btn.active {
+            background-color: #B34522;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(179, 69, 34, 0.3);
+        }
+
+        .cookout-page-banner{
+            padding: 40px 0px;
+        }
+        
+        .founders-page-banner{
+            padding: 40px 0px;
+        }
+        
+        .press-page-banner{
+            padding: 40px 0px;
+        }
+        
+        .get-involved-banner{
+            padding: 40px 0px;
+        }
+
+        @media (min-width: 768px) {
+            .cookout-page-banner { padding: 85px 0px; }
+            .founders-page-banner { padding: 85px 0px; }
+            .press-page-banner { padding: 85px 0px; }
+            .get-involved-banner { padding: 85px 0px; }
+        }
+
+        .tracking-tighter {
+            letter-spacing: 5px !important;
+        }
+
+        #m4m-track {
+            animation: m4m-scroll 38s linear infinite;
+        }
+        
+        #m4m-marquee-wrap:hover #m4m-track {
+            animation-play-state: paused;
+        }
+        
+        @keyframes m4m-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        
+        .m4m-card {
+            width: 150px;
+            flex: 0 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+            .m4m-card { width: 190px; }
+        }
+        
+        @media (min-width: 768px) {
+            .m4m-card { width: 240px; }
+         
+        }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 640px) {
+            h1 {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                font-size: 3rem !important;
+            }
+            
+            .hero-section {
+                padding: 20px;
+            }
+       .tracking-tighter {
+            letter-spacing: 1px !important;
+        }
+        }
+
+            @media (max-width: 640px) {
+        /* Make carousel smaller on mobile */
+        .detailed-work-slide {
+            min-height: 280px !important;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="fixed top-0 left-0 w-full h-1 z-[200] pointer-events-none">
+        <div id="progress-bar" class="h-full bg-brand-orange shadow-[0_0_10px_rgba(216,90,48,0.5)] w-0"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-[150] transition-all duration-500 bg-brand-orange-light py-3 md:py-6 flex justify-center">
+        <div class="flex items-center justify-between w-full max-w-7xl px-3 md:px-10">
+            <div onclick="showPage('home')" class="flex items-center gap-2 md:gap-4 cursor-pointer">
+                <div class="w-[2px] h-6 md:h-10 bg-brand-charcoal hidden sm:block opacity-30"></div>
+                <div class="flex flex-col leading-tight">
+                    <span class="font-display text-base md:text-3xl tracking-tight leading-none text-brand-charcoal">masterchef4many</span>
+                    <span class="font-sans text-[7px] md:text-[12px] font-bold tracking-tight text-brand-charcoal/90">good food for everyone</span>
+                </div>
+            </div>
+
+            <!-- Desktop Link Menu -->
+            <div class="hidden lg:flex items-center gap-2">
+                <div class="flex items-center bg-brand-charcoal/5 rounded-full px-2 py-1 mr-4 border border-brand-charcoal/5">
+                    <button onclick="showPage('home')" class="nav-link px-4 py-2 text-[12px] font-bold tracking-tight rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="home">Home</button>
+                    <button onclick="showPage('story')" class="nav-link px-4 py-2 text-[12px] font-bold tracking-tight rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="story">Our Story</button>
+                    <button onclick="showPage('cookouts')" class="nav-link px-4 py-2 text-[12px] font-bold tracking-tight rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="cookouts">Projects</button>
+                    <button onclick="showPage('founders')" class="nav-link px-4 py-2 text-[12px] font-bold tracking-tight rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="founders">Founders</button>
+                    <button onclick="showPage('press')" class="nav-link px-4 py-2 text-[12px] font-bold rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="press">Press</button>
+                    <button onclick="showPage('involved')" class="nav-link px-4 py-2 text-[12px] font-bold tracking-tight rounded-full transition-all text-brand-charcoal/60 hover:text-brand-charcoal" data-page="involved">Get Involved</button>
+                </div>
+                <button onclick="window.open('https://pages.razorpay.com/masterchef4many')" class="bg-brand-orange text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-brand-orange/90 transition-all">Donate Now</button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu(true)" class="lg:hidden p-2 text-brand-charcoal">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-menu" class="fixed inset-0 z-[200] hidden">
+        <div class="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-md" onclick="toggleMobileMenu(false)"></div>
+        <div id="mobile-sidebar" class="absolute top-0 right-0 h-full w-[85%] bg-white shadow-2xl flex flex-col p-6 translate-x-full transition-transform duration-500">
+            <div class="flex justify-between items-center mb-10">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-display text-xl text-brand-charcoal">masterchef4many</span>
+                </div>
+                <button onclick="toggleMobileMenu(false)" class="p-2"><i data-lucide="x"></i></button>
+            </div>
+            <div class="flex flex-col gap-2">
+                <button onclick="showPage('home')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Home</button>
+                <button onclick="showPage('story')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Our Story</button>
+                <button onclick="showPage('cookouts')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Projects</button>
+                <button onclick="showPage('founders')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Founders</button>
+                <button onclick="showPage('press')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Press</button>
+                <button onclick="showPage('involved')" class="text-2xl font-display py-4 border-b border-brand-border/10 text-left">Get Involved</button>
+            </div>
+            <div class="mt-auto pt-10">
+                <button onclick="window.open('https://pages.razorpay.com/masterchef4many')" class="w-full bg-brand-orange text-white h-16 rounded-xl font-bold uppercase tracking-widest text-sm">Donate Now</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="pt-0">
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-content active">
+            <!-- Hero Section -->
+            <section class="relative w-full flex items-center justify-center overflow-hidden bg-brand-charcoal pt-16 sm:pt-20 md:pt-24">
+                <img src="https://cdn.shopify.com/s/files/1/0744/8071/4044/files/home-mobile-banner.png?v=1786599489" alt="Hero" class="w-full h-auto block md:hidden" loading="eager" fetchpriority="high" decoding="async">
+                <img src="https://cdn.shopify.com/s/files/1/0744/8071/4044/files/home-banner.png?v=1786599489" alt="Hero" class="w-full h-auto hidden md:block" loading="eager" fetchpriority="high" decoding="async">
+                <div class="absolute inset-0 bg-brand-charcoal/40"></div>
+                <div class="absolute inset-0 z-10 flex items-center justify-center">
+                    <div class="text-center space-y-4 sm:space-y-6 md:space-y-12 px-4 sm:px-6 max-w-7xl mx-auto">
+                        <h1 class="main-text text-xl sm:text-4xl md:text-7xl lg:text-8xl font-sans font-black text-[#FDE2DC] leading-tight sm:leading-[0.95] md:leading-[0.9] tracking-tighter lowercase" style="padding-top: 40px;">
+                            the childrens <br><span class="text-white">nutrition project</span>
+                        </h1>
+                        <p class="text-sm sm:text-lg md:text-3xl lg:text-4xl text-white font-bold max-w-4xl mx-auto leading-tight tracking-tight">Take Action Now to Support the Nutritional Needs of 500 Children</p>
+                        <p class="text-xs sm:text-base md:text-xl text-white max-w-2xl mx-auto leading-relaxed px-2">Help us support the daily nutritious meals needs of 500 children in our community</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Bar -->
+            <section class="py-8 sm:py-12 md:py-16 bg-brand-cream border-b border-brand-border">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-12">
+                    <div class="stat-item flex flex-col items-center text-center" data-val="712" data-suffix="k+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Meals Served</div>
+                    </div>
+                    <div class="stat-item flex flex-col items-center text-center" data-val="250" data-suffix="+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Volunteers</div>
+                    </div>
+                    <div class="stat-item flex flex-col items-center text-center" data-val="3" data-suffix="+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Community Kitchens</div>
+                    </div>
+                    <div class="stat-item flex flex-col items-center text-center" data-val="500" data-suffix="+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">children daily</div>
+                    </div>
+                    <div class="stat-item flex flex-col items-center text-center" data-val="5" data-suffix="+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Shelter Homes</div>
+                    </div>
+                    <div class="stat-item flex flex-col items-center text-center" data-val="534" data-suffix="L+">
+                        <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Mobilized</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ethos Section -->
+            <section class="py-12 sm:py-16 md:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 md:gap-24 items-center">
+                    <div class="reveal space-y-6 sm:space-y-8 md:space-y-10">
+                        <div>
+                            <span class="text-brand-orange font-bold uppercase tracking-widest text-[9px] sm:text-[10px] mb-2 block">The Ethos</span>
+                            <h2 class="font-display text-2xl sm:text-3xl md:text-5xl text-brand-charcoal mb-2 md:mb-4">Food That Nourishes <br>The Soul.</h2>
+                            <p class="text-brand-charcoal/80 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed">We believe that every child deserves more than just calories. They deserve delicious & nutritious food that makes them feel cared for.</p>
+                            <p class="text-xs sm:text-sm md:text-base mt-3 text-brand-charcoal/70">Our approach merges the culinary standards of Mumbai's finest restaurants with the emotional warmth of home-cooked meals.</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                            <div class="space-y-2">
+                                <div class="font-display text-2xl sm:text-3xl md:text-4xl text-brand-charcoal">Quality</div>
+                                <p class="text-[7px] sm:text-[9px] md:text-xs text-gray-400 font-medium tracking-widest uppercase">Standardized, nutritious ingredients sourced with care.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="font-display text-2xl sm:text-3xl md:text-4xl text-brand-charcoal">Consistency</div>
+                                <p class="text-[7px] sm:text-[9px] md:text-xs text-gray-400 font-medium tracking-widest uppercase">Daily and weekly support ensuring nobody is left behind.</p>
+                            </div>
+                        </div>
+                        <button onclick="showPage('story')" class="inline-flex items-center gap-2 border-2 border-brand-orange text-brand-orange px-6 sm:px-8 md:px-10 h-10 sm:h-12 md:h-14 rounded-full font-bold text-xs sm:text-sm md:text-base hover:bg-brand-orange/5 transition-all">
+                            Our Full Story<i data-lucide="arrow-right" class="w-3 h-3 md:w-4 md:h-4"></i>
+                        </button>
+                    </div>
+                    <div class="reveal">
+                        <img src="https://static.wixstatic.com/media/6c293b_617cf235aaa3449d8901e8f7d9659840~mv2.jpg/v1/fill/w_900,h_1200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_617cf235aaa3449d8901e8f7d9659840~mv2.jpg" class="rounded-2xl sm:rounded-3xl md:rounded-[3rem] shadow-2xl h-64 sm:h-80 md:h-[600px] w-full object-cover" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolios Section -->
+            <section class="py-12 sm:py-16 md:py-24 bg-brand-cream/30 border-y border-brand-border">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 md:space-y-12">
+                    <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-brand-orange font-bold text-[9px] sm:text-xs uppercase tracking-widest block mb-2 md:mb-4">Our Projects</span>
+                            <h2 class="text-2xl sm:text-3xl md:text-5xl font-display tracking-tight leading-tight text-brand-charcoal">Strategic Initiatives for <br>Mumbai's Children.</h2>
+                        </div>
+                        <button onclick="showPage('story')" class="text-brand-charcoal hover:text-brand-orange transition-colors font-bold uppercase tracking-widest text-[9px] sm:text-xs flex items-center gap-2 group whitespace-nowrap">
+                            See All Work <i data-lucide="chevron-right" class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+                        <div class="reveal group cursor-pointer space-y-4" onclick="showPage('cookouts')">
+                            <div class="aspect-[4/5] rounded-xl sm:rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-lg group-hover:shadow-2xl transition-all relative">
+                                <img src="https://static.wixstatic.com/media/6c293b_9b4bfa6570754c12ae7cc700d3061642~mv2.jpg/v1/fill/w_700,h_875,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_9b4bfa6570754c12ae7cc700d3061642~mv2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white/60 font-bold uppercase tracking-widest text-[8px] sm:text-[9px] mb-1 md:mb-2">Ongoing</span>
+                                    <h3 class="text-sm sm:text-base md:text-xl font-display text-white">Children Nutrition Project (CNP)</h3>
+                                </div>
+                            </div>
+                            <div class="px-1 sm:px-2">
+                                <span class="text-[8px] sm:text-[9px] font-bold text-brand-orange uppercase tracking-widest block mb-1 md:mb-2">Ongoing</span>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-display group-hover:text-brand-orange transition-colors text-brand-charcoal">Children Nutrition Project (CNP)</h3>
+                                <p class="text-brand-charcoal/60 text-[12px] sm:text-sm leading-relaxed mt-1 md:mt-2">Nourishing brighter futures by providing children with balanced, high-protein lunches every single day.</p>
+                            </div>
+                        </div>
+                        <div class="reveal group cursor-pointer space-y-4" onclick="showPage('cookouts')">
+                            <div class="aspect-[4/5] rounded-xl sm:rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-lg group-hover:shadow-2xl transition-all relative">
+                                <img src="https://static.wixstatic.com/media/6c293b_4fee6d985c514d8bb6787cf3c18475d6~mv2.jpeg/v1/fill/w_700,h_875,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_4fee6d985c514d8bb6787cf3c18475d6~mv2.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white/60 font-bold uppercase tracking-widest text-[8px] sm:text-[9px] mb-1 md:mb-2">2021 - 2023</span>
+                                    <h3 class="text-sm sm:text-base md:text-xl font-display text-white">Good Food Drive (GFD)</h3>
+                                </div>
+                            </div>
+                            <div class="px-1 sm:px-2">
+                                <span class="text-[8px] sm:text-[9px] font-bold text-brand-orange uppercase tracking-widest block mb-1 md:mb-2">2021 - 2023</span>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-display group-hover:text-brand-orange transition-colors text-brand-charcoal">Good Food Drive (GFD)</h3>
+                                <p class="text-brand-charcoal/60 text-[12px] sm:text-sm leading-relaxed mt-1 md:mt-2">Sharing good food, spreading hope, and creating brighter days for everyone.</p>
+                            </div>
+                        </div>
+                        <div class="reveal group cursor-pointer space-y-4" onclick="showPage('cookouts')">
+                            <div class="aspect-[4/5] rounded-xl sm:rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-lg group-hover:shadow-2xl transition-all relative">
+                                <img src="https://static.wixstatic.com/media/6c293b_ac09700dba434696b355a357a5a38101~mv2.jpg/v1/fill/w_700,h_875,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_ac09700dba434696b355a357a5a38101~mv2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent flex flex-col justify-end p-4 sm:p-6 md:p-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="text-white/60 font-bold uppercase tracking-widest text-[8px] sm:text-[9px] mb-1 md:mb-2">2020 - 2021</span>
+                                    <h3 class="text-sm sm:text-base md:text-xl font-display text-white">Lockdown drive</h3>
+                                </div>
+                            </div>
+                            <div class="px-1 sm:px-2">
+                                <span class="text-[8px] sm:text-[9px] font-bold text-brand-orange uppercase tracking-widest block mb-1 md:mb-2">2020 - 2021</span>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-display group-hover:text-brand-orange transition-colors text-brand-charcoal">Lockdown drive</h3>
+                                <p class="text-brand-charcoal/60 text-[12px] sm:text-sm leading-relaxed mt-1 md:mt-2">A massive pandemic initiative that mobilized hundreds of home-chefs to provide dignity through warm meals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Impact Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+                <div class="bg-brand-charcoal text-[#FDE2DC] rounded-2xl sm:rounded-3xl md:rounded-[3rem] py-8 sm:py-12 md:py-16 px-6 sm:px-10 md:px-16 overflow-hidden relative border-4 border-brand-orange/20 text-center">
+                    <div class="reveal space-y-8 sm:space-y-10 md:space-y-12 relative z-10">
+                        <div class="space-y-2 md:space-y-4">
+                            <span class="text-brand-orange font-bold text-[9px] sm:text-xs uppercase tracking-widest">Global Impact</span>
+                            <h2 class="text-2xl sm:text-3xl md:text-5xl font-display text-white">Recognition & Media</h2>
+                        </div>
+                        
+                        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-12 md:gap-24 opacity-80 transition-all duration-700">
+                            <div class="flex flex-col items-center gap-3 group cursor-pointer" >
+                                <div class="w-32 sm:w-40 h-16 border-brand-orange-light flex items-center justify-center font-display text-[9px] font-bold p-3 text-center leading-tight group-hover:border-white transition-colors" style="background-color: #fff;display: flex;"><a href="https://diana-award.org.uk/our-programmes-and-initiatives/award-and-development/roll-of-honour/roll-of-honour-2022"><img src="https://cdn.prod.website-files.com/6332fa86146bf38f803b66c2/6334424d05aebb6f70349302_Logo-Banner-Nav-p-500.webp" alt="" class="max-w-full h-auto" loading="lazy" decoding="async"></a></div>
+                                <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors text-center">United Kingdom</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group cursor-pointer" >
+                                <div class="w-40 sm:w-60 h-16 font-display text-3xl sm:text-5xl font-black italic tracking-tighter text-white group-hover:text-brand-orange transition-colors underline decoration-brand-orange decoration-4" style="display: flex;align-items: end;">
+                                    <a href="https://www.mid-day.com/mumbai-guide/mumbai-food/article/mid-day-turns-41--Fighting-lockdown-with-lasagna-22889233"><img src="https://static.wixstatic.com/media/6c293b_085d3d23e91e4f8aac601a186a0f81db~mv2.png/v1/fill/w_488,h_110,al_c,lg_1,q_85,enc_avif,quality_auto/download.png" alt="" class="max-w-full h-auto" loading="lazy" decoding="async"></a>
+                                </div>
+                                <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">Mumbai Edition</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group cursor-pointer" >
+                                <div class="w-32 sm:w-40 h-16 font-display text-xl sm:text-3xl font-bold uppercase tracking-tight text-white group-hover:text-brand-orange transition-colors" style="display: flex;align-items: end;">
+                                    <a href="https://www.freepressjournal.in/mumbai/coronavirus-in-mumbai-city-kids-give-charity-meals-a-gourmet-twist"><img src="https://static.wixstatic.com/media/6c293b_b1b15014116243f499ffd57dad7ec1b3~mv2.jpg/v1/fill/w_314,h_110,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/The_Free_Press_Journal_logo.jpg" alt="" class="max-w-full h-auto" loading="lazy" decoding="async"></a>
+                                </div>
+                                <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors text-center">Journal</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button onclick="showPage('press')" class="border-2 border-white/20 text-white px-6 sm:px-10 h-10 sm:h-12 md:h-14 rounded-full font-bold hover:bg-white hover:text-brand-charcoal transition-all inline-flex items-center gap-2 text-xs sm:text-sm md:text-base">
+                                Explore Press Coverage <i data-lucide="arrow-right" class="w-3 h-3 sm:w-4 sm:h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Section -->
+            <section id="video-gallery" class="py-12 sm:py-16 md:py-24 bg-white border-t border-brand-border">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div class="text-center mx-auto mb-8 md:mb-12">
+                        <span class="text-brand-orange font-bold uppercase tracking-widest text-[9px] sm:text-xs mb-2 block">Moments of Impact</span>
+                        <h2 class="font-display text-2xl sm:text-3xl md:text-5xl text-brand-charcoal mb-2 md:mb-4">Our Journey in Motion</h2>
+                        <p class="text-brand-charcoal/80 max-w-2xl mx-auto text-xs sm:text-base md:text-lg leading-relaxed">Glimpses into the kitchens and communities that make MasterChef4Many possible.</p>
+                    </div>
+                    <!-- Video Grid -->
+                    <div class="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                        <!-- Video 1 -->
+                        <div class="video-card rounded-2xl md:rounded-[2rem] overflow-hidden shadow-xl bg-brand-charcoal aspect-video cursor-pointer relative group" onclick="playVideo(this, '1hDmle579EOZfao9_gh_6hnUzPF6n64UT')">
+                            <img src="https://static.wixstatic.com/media/6c293b_617cf235aaa3449d8901e8f7d9659840~mv2.jpg/v1/fill/w_700,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_617cf235aaa3449d8901e8f7d9659840~mv2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:scale-110 transition-all">
+                                    <i data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 fill-current ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Video 2 -->
+                        <div class="video-card rounded-2xl md:rounded-[2rem] overflow-hidden shadow-xl bg-brand-charcoal aspect-video cursor-pointer relative group" onclick="playVideo(this, '18ONB8JsgkkHYvxDxOlm6Me0uzPcz175l')">
+                            <img src="https://static.wixstatic.com/media/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg/v1/fill/w_700,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity" loading="lazy" decoding="async">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:scale-110 transition-all">
+                                    <i data-lucide="play" class="w-8 h-8 sm:w-10 sm:h-10 fill-current ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-12 sm:py-16 md:py-24 bg-brand-orange-light text-center border-t border-brand-border">
+                <h2 class="text-2xl sm:text-3xl md:text-6xl font-display mb-8 md:mb-12 px-4">Will you help us reach the <span class="italic text-brand-orange">next million?</span></h2>
+                <div class="flex justify-center gap-2 sm:gap-4 flex-wrap px-4">
+                    <button onclick="window.open('https://pages.razorpay.com/masterchef4many')" class="h-12 sm:h-14 md:h-16 px-6 sm:px-10 md:px-12 rounded-full bg-brand-orange text-white font-bold text-xs sm:text-sm md:text-base hover:bg-brand-orange/90 transition-all shadow-lg">Donate Now</button>
+                    <button onclick="showPage('involved')" class="h-12 sm:h-14 md:h-16 px-6 sm:px-10 md:px-12 rounded-full border-2 border-brand-orange text-brand-orange bg-white font-bold text-xs sm:text-sm md:text-base hover:bg-brand-orange/5 transition-all">Help our mission</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- STORY PAGE -->
+        <div id="page-story" class="page-content">
+            <header class="relative min-h-[250px] sm:min-h-[350px] md:min-h-[450px] flex items-center justify-center overflow-hidden bg-brand-orange-light pt-16 sm:pt-24 md:pt-32 pb-8 md:pb-12">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://static.wixstatic.com/media/11062b_cacb6249b6024b61b2d8a8594b7dbb4c~mv2.jpg/v1/fill/w_800,h_1000,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_cacb6249b6024b61b2d8a8594b7dbb4c~mv2.jpg" class="w-full h-full object-cover opacity-60 block md:hidden" loading="lazy" decoding="async">
+                    <img src="https://static.wixstatic.com/media/11062b_cacb6249b6024b61b2d8a8594b7dbb4c~mv2.jpg/v1/fill/w_1898,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_cacb6249b6024b61b2d8a8594b7dbb4c~mv2.jpg" class="w-full h-full object-cover opacity-60 hidden md:block" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/10 via-white/40 to-white"></div>
+                </div>
+                <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto reveal active" style="padding-top: 60px;">
+                    <span class="inline-block px-3 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] mb-3 md:mb-4 backdrop-blur-sm">Our Legacy</span>
+                    <h1 class="text-2xl sm:text-4xl md:text-8xl font-display text-brand-charcoal leading-[1.1] mb-4 md:mb-6 tracking-tight">From a Single Kitchen to a Citywide Movement</h1>
+                    <p class="text-xs sm:text-base md:text-xl text-brand-charcoal/70 max-w-2xl mx-auto font-medium leading-relaxed">What began as a simple family promise has blossomed into Mumbai's largest youth-led culinary force.</p>
+                </div>
+            </header>
+
+            <!-- Vision Carousel Container -->
+            <section class="max-w-7xl ml-3 mr-3 sm:ml-4 sm:mr-4 md:mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-16 bg-white rounded-2xl md:rounded-[3rem] overflow-hidden my-6 md:my-16 border border-brand-border shadow-sm relative">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-orange/5 to-transparent pointer-events-none"></div>
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-16 items-center relative z-10">
+                    <div class="space-y-6 md:space-y-12">
+                        <div class="space-y-2 md:space-y-4">
+                            <span class="text-brand-orange font-bold uppercase tracking-widest text-[8px] md:text-xs">Our Vision & Evolution</span>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="space-y-6 md:space-y-8">
+                            <!-- Date Tabs -->
+                            <div id="vision-tabs" class="flex gap-2 md:gap-4 overflow-x-auto pb-3 sm:pb-4 scrollbar-hide -mx-3 px-3 md:mx-0 md:px-0 cursor-grab select-none" style="scroll-behavior: smooth;">
+                                <button onclick="setVisionSlide(0)" class="vision-btn active px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-[9px] md:text-sm font-bold transition-all shrink-0 uppercase tracking-wider bg-brand-orange-light text-brand-orange whitespace-nowrap">November 2018</button>
+                                <button onclick="setVisionSlide(1)" class="vision-btn px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-[9px] md:text-sm font-bold transition-all shrink-0 uppercase tracking-wider bg-brand-orange-light text-brand-orange whitespace-nowrap">December 2018</button>
+                                <button onclick="setVisionSlide(2)" class="vision-btn px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-full text-[9px] md:text-sm font-bold transition-all shrink-0 uppercase tracking-wider bg-brand-orange-light text-brand-orange whitespace-nowrap">May 2019</button>
+                            </div>
+
+                            <!-- Content Slides -->
+                            <div id="vision-content" class="relative">
+                                <!-- Slide 0 -->
+                                <div class="vision-slide active space-y-4 md:space-y-6">
+                                    <h2 id="vision-title" class="font-display text-2xl sm:text-3xl md:text-6xl text-brand-charcoal leading-tight">The Nutcracker and <span class="text-brand-orange italic">Angel Express</span></h2>
+                                    <p class="text-gray-500 text-xs sm:text-sm md:text-lg leading-relaxed max-w-lg">When The Nutcracker opened its doors to us for our first cook I knew we hit upon something good! Nutcracker's founder, Annie, along with her amazing team of chefs, helped me cook up quite a storm in the back kitchen over 2 days…the menu included cheese and corn croquettes, penne arrabbiata and chocolate shortbread cookies! 
+My cousin Malvika was super quick in identifying Angel Xpress as our first school host...hours of cooking (a first in a commercial kitchen for me!), a few cuts and lots of fun later, we landed up at their School in Cuffe Parade.
+The experience is one I will always cherish, it was exhilarating to chat about food with these kids (many of whom had watched Masterchef) and watch them enjoy the food we bought them!
+74 kids, many cookies and empty pasta bowls later don't know who felt happier and more grateful them or us…</p>
+                                </div>
+                                <!-- Slide 1 -->
+                                <div class="vision-slide hidden space-y-4 md:space-y-6">
+                                    <h2 id="vision-title" class="font-display text-2xl sm:text-3xl md:text-6xl text-brand-charcoal leading-tight">El Mercado and <span class="text-brand-orange italic">Mumbai Smiles</span></h2>
+                                    <p class="text-gray-500 text-xs sm:text-sm md:text-lg leading-relaxed max-w-lg">Our second cookout took place at much loved Spanish eatery, El Mercado. Vidur Kapoor and Pranaya Gidwani, the restaurateurs, were extremely proactive in joining our initiative and through amazing collaboration with the team at El Mercado, we cooked up a traditional Spanish feast of tortillas, paella and Arroz con Leche.
+El Mercado already working with the amazing Mumbai Smiles Foundation helped us quickly identify a girl's high school in Saki Naka. The food was loved by the students and the teachers who especially enjoyed the paella. It was delightful seeing the girls enjoying themselves so much.
+We went on to have a sort of Q & A session where we learnt how each of them had unique and amazing aspirations. Some wanted to become singers, dancers, doctors and even chefs! I just want to end with a big thank you to everyone from the chefs to the teachers and staff at the school. .</p>
+                                    <div class="inline-flex items-center gap-3 bg-brand-orange-light px-3 py-2 rounded-lg border border-brand-orange/10">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i>
+                                        <span class="text-brand-charcoal text-[11px] md:text-base font-medium">135,000+ Moments of Hope</span>
+                                    </div>
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="vision-slide hidden space-y-4 md:space-y-6">
+                                    <h2 id="vision-title" class="font-display text-2xl sm:text-3xl md:text-6xl text-brand-charcoal leading-tight">Tertulia and Prabhadevi <br><span class="text-brand-orange italic">Slum Cluster</span></h2>
+                                    <p class="text-gray-500 text-xs sm:text-sm md:text-lg leading-relaxed max-w-lg">Tertulia, the amazing multi-cuisine restaurant opened their kitchen for our 3rd m4m cookout. We worked with the restaurateur, Imrun Sethi and his chefs to come up with a menu. We decided on a scrumptious spaghetti Aglio Olio with chicken and a gooey chocolate cake. This cookout was extremely memorable as my squash coaches, Abhinav Sir and Abhishek Sir joined us in the kitchen.
+
+We separated over 2 dozen eggs, melted chocolate and blended it into a delicious batter. The next day we were back and cooked up the spaghetti and topped off the cakes. We were ready to go! This time we went to a slum cluster in Prabhadevi, and as we reached, we could see the children eagerly waiting. It was delightful seeing them so happy.
+We met Anju, I girl with a growth disorder that prevented her from gaining height or speaking properly. It was so sad to see her in that condition but she was still so happy. All the children took great care of her, it almost brought tears to my eyes to think that someone can be so happy with so little. I will always remember the children at this cluster who took care of Anju. I also want to say a massive thanks to Tertulia and especially the chefs who went far beyond and made us truly experience a restaurant kitchen.</p>
+                                    <div class="inline-flex items-center gap-3 bg-brand-orange-light px-3 py-2 rounded-lg border border-brand-orange/10">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i>
+                                        <span class="text-brand-charcoal text-[11px] md:text-base font-medium">500 Daily Beneficiaries</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Image Display -->
+                    <div class="relative aspect-square overflow-hidden rounded-xl md:rounded-[2rem] shadow-xl bg-brand-orange-light">
+                        <img id="vision-image" src="https://static.wixstatic.com/media/6c293b_a9dc4fd93a0e4ffea4ff38fd24f949ad~mv2.jpeg/v1/fill/w_800,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_a9dc4fd93a0e4ffea4ff38fd24f949ad~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Journey Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-24 space-y-8 md:space-y-16">
+                <div class="reveal">
+                    <span class="text-brand-orange font-bold uppercase tracking-widest text-[9px] sm:text-xs mb-3 md:mb-4 block">Our Journey</span>
+                    <h2 class="font-display text-2xl sm:text-3xl md:text-6xl text-brand-charcoal mb-4 md:mb-6 tracking-tight">From a single kitchen to a <span class="text-brand-orange italic">city-wide movement</span></h2>
+                    <p class="text-brand-charcoal/80 max-w-2xl text-xs sm:text-base md:text-lg leading-relaxed">Every meal served tells a story of compassion, resilience, and the power of youth to drive change.</p>
+                </div>
+
+                <div class="relative mt-8 px-2 md:px-0 mb-12 md:mb-20">
+                    <!-- Vertical Line -->
+                    <div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-brand-orange/20 hidden md:block"></div>
+
+                    <div class="space-y-8 md:space-y-12">
+                        <!-- Milestone 1 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12 md:flex-row-reverse">
+                            <div class="flex-1 w-full text-center md:text-left">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">04/11/2018</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">masterchef4many Was Launched</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:ml-0">It began with a simple idea: what if the joy of a gourmet meal wasn't reserved for the privileged few? On this day, masterchef4many was born.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="sparkles" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+
+                        <!-- Milestone 2 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                            <div class="flex-1 w-full text-center md:text-right">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">20/11/2018</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">Our First Cookout at The Nutcracker</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:mr-0">The Nutcracker opened its kitchen doors for our very first cookout. Over two days, founder Annie and her chefs helped us whip up cheese and corn croquettes, penne arrabbiata, and chocolate shortbread cookies.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="chef-hat" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+
+                        <!-- Milestone 3 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12 md:flex-row-reverse">
+                            <div class="flex-1 w-full text-center md:text-left">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">26/12/2018</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">Second Cookout at El Mercado</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:ml-0">Spanish eatery El Mercado welcomed us for cookout number two. Restaurateurs Vidur Kapoor and Pranaya Gidwani helped us prepare tortillas, paella for a girls' high school in Saki Naka.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="utensils" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+
+                        <!-- Milestone 4 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                            <div class="flex-1 w-full text-center md:text-right">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">15/05/2019</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">Cookout 3 With Tertulia</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:mr-0">Multi-cuisine restaurant Tertulia hosted our third cookout. We cooked up spaghetti Aglio Olio and chocolate cake, then carried it to a slum cluster in Prabhadevi.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="flame" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+
+                        <!-- Milestone 5 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12 md:flex-row-reverse">
+                            <div class="flex-1 w-full text-center md:text-left">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">19/05/2020</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">Launched the Good Food Drive</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:ml-0">As Mumbai fell silent under lockdown, we packed 20 boxes of warm khichdi from a single home kitchen and hit the streets.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="package" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+
+                        <!-- Milestone 6 -->
+                        <div class="reveal flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                            <div class="flex-1 w-full text-center md:text-right">
+                                <div class="space-y-2 md:space-y-3">
+                                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-[0.2em]">28/06/2020</span>
+                                    <h3 class="font-display text-lg sm:text-xl md:text-3xl text-brand-charcoal">10,000 Meals Served</h3>
+                                    <p class="text-gray-500 text-[11px] sm:text-xs md:text-base leading-relaxed max-w-sm mx-auto md:mr-0">In just weeks, 20 boxes multiplied into 10,000 meals. Home kitchens across the city joined the cause.</p>
+                                </div>
+                            </div>
+                            <div class="relative z-10 w-10 h-10 md:w-16 md:h-16 rounded-full bg-brand-orange flex items-center justify-center text-white border-4 border-brand-cream shadow-xl shrink-0">
+                                <i data-lucide="trending-up" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </div>
+                            <div class="flex-1 hidden md:block"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- COOKOUTS PAGE -->
+        <div id="page-cookouts" class="page-content">
+            <header class="relative min-h-[280px] sm:min-h-[380px] md:min-h-[450px] flex items-center justify-center bg-brand-orange-light pt-16 sm:pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden">
+                <img src="https://static.wixstatic.com/media/11062b_2a31026fd9834b12aecf8f32823c7ead~mv2.jpeg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_2a31026fd9834b12aecf8f32823c7ead~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover opacity-60 block md:hidden" loading="lazy" decoding="async">
+                <img src="https://static.wixstatic.com/media/11062b_2a31026fd9834b12aecf8f32823c7ead~mv2.jpeg/v1/fill/w_1898,h_401,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_2a31026fd9834b12aecf8f32823c7ead~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover opacity-60 hidden md:block" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/10 via-white/40 to-white"></div>
+                <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto cookout-page-banner">
+                    <span class="inline-block px-3 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-3 md:mb-4">Special Initiatives</span>
+                    <h1 class="text-3xl sm:text-5xl md:text-8xl font-display text-brand-charcoal mb-4 md:mb-6">Projects</h1>
+                    <p class="text-sm sm:text-base md:text-xl max-w-2xl mx-auto text-brand-charcoal/70 font-medium">Bridging the gap between fine-dining kitchens and the children who dream of them.</p>
+                </div>
+            </header>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 md:space-y-16 mt-8 md:mt-12 relative">
+                <!-- Idea Box -->
+                <div class="bg-brand-orange/5 p-6 sm:p-10 md:p-16 rounded-2xl md:rounded-[4rem] border border-brand-orange/10 relative overflow-hidden group">
+                    <div class="max-w-3xl relative z-10">
+                        <div class="mb-8 md:mb-12">
+                            <span class="text-brand-orange font-bold uppercase tracking-widest text-[8px] md:text-xs mb-2 block">The Idea</span>
+                            <h2 class="font-display text-2xl sm:text-3xl md:text-5xl text-brand-charcoal mb-3 md:mb-4">A thousand possibilities, a hundred smiles</h2>
+                            <p class="text-brand-charcoal/80 max-w-2xl text-xs sm:text-base md:text-lg leading-relaxed">The idea of M4M is to share our love for food meaningfully with other children who are not as fortunate as us. Moreover, M4M is about introducing the common people to some delicious but new-age food with new-age ingredients - the MasterChef way!</p>
+                        </div>
+                        <div class="space-y-3 md:space-y-4 text-gray-600 leading-relaxed italic text-xs sm:text-sm md:text-base">
+                            <p>"I'm buzzing with excitement to see how nachos with creamy guacamole will crunch in their mouths and hopefully dazzle them with wonder."</p>
+                            <p>"A thousand possibilities, a hundred smiles and just a few simple but amazing recipes."</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            <!-- Detailed Portfolios -->
+<div class="reveal">
+    <span class="text-brand-orange font-bold uppercase tracking-widest text-[8px] md:text-xs mb-3 md:mb-4 block">Our Projects</span>
+    <h2 class="font-display text-2xl sm:text-3xl md:text-6xl text-brand-charcoal mb-4 md:mb-6 tracking-tight">A deeper look into <span class="text-brand-orange italic">our cookouts</span></h2>
+    <p class="text-brand-charcoal/80 max-w-2xl text-xs sm:text-base md:text-lg leading-relaxed">Explore the menus and stories behind our most impactful food security initiatives.</p>
+</div>
+<div class="relative group">
+    <div id="detailed-work-swipe" class="overflow-hidden rounded-xl sm:rounded-2xl md:rounded-[2.5rem] shadow-lg sm:shadow-xl bg-white border border-brand-border">
+        <div id="detailed-work-container">
+            <!-- Item 1: Children Nutrition Project (CNP) -->
+            <div class="detailed-work-slide active grid lg:grid-cols-2 h-[420px] sm:h-[380px] md:h-[420px]">
+                <div class="relative h-40 sm:h-full overflow-hidden">
+                    <img src="images/project1.jpg" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div class="p-4 sm:p-6 md:p-10 flex flex-col justify-center space-y-2 md:space-y-4 overflow-y-auto">
+                    <div>
+                        <span class="text-brand-orange font-bold text-[7px] md:text-xs uppercase tracking-widest block mb-1 md:mb-2">Ongoing Initiative</span>
+                        <h3 class="font-display text-base sm:text-lg md:text-3xl leading-tight mb-1 md:mb-2">Children Nutrition Project (CNP)</h3>
+                    </div>
+                    <p class="text-gray-600 text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-4">The evolution of our mission toward long-term, systemic impact. Through the Children Nutrition Project, we sustain 500+ daily beneficiaries with scientific, protein-rich lunches served every single day of the week. By empowering local micro-caterers, we've built a sustainable pipeline.</p>
+                    <div class="flex gap-3 md:gap-6 border-t border-brand-border pt-2 md:pt-4">
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">500+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Daily</div>
+                        </div>
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">17+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Locations</div>
+                        </div>
+                    </div>
+                    <div class="bg-brand-cream border border-brand-orange/20 p-2 md:p-3 rounded-lg md:rounded-xl">
+                        <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-orange mb-0.5">Menu Served</div>
+                        <p class="text-brand-charcoal font-medium text-[9px] md:text-xs line-clamp-1">High-Protein Dal & Rice, Fresh Greens, Boiled Egg, Seasonal Fruit</p>
+                    </div>
+                    <div class="inline-flex items-center gap-2 text-brand-orange font-bold text-[8px] md:text-[9px] uppercase tracking-widest border border-brand-orange/20 px-2 md:px-3 py-1 md:py-1.5 rounded-full w-fit">
+                        <i data-lucide="target" class="w-3 h-3"></i> Structural health for 17+ shelters
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Good Food Drive (GFD) -->
+            <div class="detailed-work-slide hidden grid lg:grid-cols-2 h-[420px] sm:h-[380px] md:h-[420px]">
+                <div class="relative h-40 sm:h-full overflow-hidden">
+                    <img src="images/project2.jpg" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div class="p-4 sm:p-6 md:p-10 flex flex-col justify-center space-y-2 md:space-y-4 overflow-y-auto">
+                    <div>
+                        <span class="text-brand-orange font-bold text-[7px] md:text-xs uppercase tracking-widest block mb-1 md:mb-2">Foundational Care</span>
+                        <h3 class="font-display text-base sm:text-lg md:text-3xl leading-tight mb-1 md:mb-2">Good Food Drive (GFD)</h3>
+                    </div>
+                    <p class="text-gray-600 text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-4">When Mumbai fell silent under lockdown, we asked how a home kitchen could feed a city. What started as 20 boxes of warm khichdi became a decentralized relief network of 200+ home kitchens, turning private dining tables into gourmet labs and delivering warmth, dignity, and hope in every single box.</p>
+                    <div class="flex gap-3 md:gap-6 border-t border-brand-border pt-2 md:pt-4">
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">200+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Kitchens</div>
+                        </div>
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">250k+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Meals</div>
+                        </div>
+                    </div>
+                    <div class="bg-brand-cream border border-brand-orange/20 p-2 md:p-3 rounded-lg md:rounded-xl">
+                        <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-orange mb-0.5">Menu Served</div>
+                        <p class="text-brand-charcoal font-medium text-[9px] md:text-xs line-clamp-1">Comforting Khichdi, Wholesome Lasagna, Artisanal Burgers, Fresh Fruit</p>
+                    </div>
+                    <div class="inline-flex items-center gap-2 text-brand-orange font-bold text-[8px] md:text-[9px] uppercase tracking-widest border border-brand-orange/20 px-2 md:px-3 py-1 md:py-1.5 rounded-full w-fit">
+                        <i data-lucide="target" class="w-3 h-3"></i> Decentralized nutrition 200+ areas
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Lockdown Drive -->
+            <div class="detailed-work-slide hidden grid lg:grid-cols-2 h-[420px] sm:h-[380px] md:h-[420px]">
+                <div class="relative h-40 sm:h-full overflow-hidden">
+                    <img src="https://static.wixstatic.com/media/6c293b_a9dc4fd93a0e4ffea4ff38fd24f949ad~mv2.jpeg/v1/fill/w_426,h_426,q_90,enc_avif,quality_auto/6c293b_a9dc4fd93a0e4ffea4ff38fd24f949ad~mv2.jpeg" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div class="p-4 sm:p-6 md:p-10 flex flex-col justify-center space-y-2 md:space-y-4 overflow-y-auto">
+                    <div>
+                        <span class="text-brand-orange font-bold text-[7px] md:text-xs uppercase tracking-widest block mb-1 md:mb-2">Crisis Response 2020</span>
+                        <h3 class="font-display text-base sm:text-lg md:text-3xl leading-tight mb-1 md:mb-2">The Lockdown Drive</h3>
+                    </div>
+                    <p class="text-gray-600 text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-4">We challenged the notion that charity should only be basic. When restaurants closed during the lockdown, we asked: 'What would we crave?' The answer was bubbling, golden-crust lasagna. Over 100 families turned their home kitchens into gourmet labs, cooking and delivering warmth, dignity and comfort meals.</p>
+                    <div class="flex gap-3 md:gap-6 border-t border-brand-border pt-2 md:pt-4">
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">100+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Families</div>
+                        </div>
+                        <div class="space-y-0.5">
+                            <div class="font-display text-sm md:text-lg font-bold text-brand-charcoal">135k+</div>
+                            <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-charcoal/40">Meals</div>
+                        </div>
+                    </div>
+                    <div class="bg-brand-cream border border-brand-orange/20 p-2 md:p-3 rounded-lg md:rounded-xl">
+                        <div class="text-[7px] md:text-[9px] font-bold uppercase tracking-widest text-brand-orange mb-0.5">Menu Served</div>
+                        <p class="text-brand-charcoal font-medium text-[9px] md:text-xs line-clamp-1">Bolognese Lasagna, Herbed Focaccia, Chocolate Brownies, Hot Beverages</p>
+                    </div>
+                    <div class="inline-flex items-center gap-2 text-brand-orange font-bold text-[8px] md:text-[9px] uppercase tracking-widest border border-brand-orange/20 px-2 md:px-3 py-1 md:py-1.5 rounded-full w-fit">
+                        <i data-lucide="target" class="w-3 h-3"></i> Pandemic resilience & extreme scaling
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons - now visible on mobile too, sitting ON the card -->
+    <button onclick="prevDetailedWorkSlide()" aria-label="Previous"
+        class="absolute left-2 sm:left-3 md:left-4 top-20 sm:top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/95 shadow-lg border border-brand-border flex items-center justify-center text-brand-charcoal hover:bg-brand-orange hover:text-white active:scale-95 transition-all cursor-pointer">
+        <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
+    </button>
+    <button onclick="nextDetailedWorkSlide()" aria-label="Next"
+        class="absolute right-2 sm:right-3 md:right-4 top-20 sm:top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/95 shadow-lg border border-brand-border flex items-center justify-center text-brand-charcoal hover:bg-brand-orange hover:text-white active:scale-95 transition-all cursor-pointer">
+        <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
+    </button>
+
+    <!-- Mobile Swipe Indicators (tappable) -->
+    <div class="flex justify-center gap-2 mt-4 sm:hidden">
+        <div class="w-2 h-2 rounded-full bg-brand-orange transition-all cursor-pointer" id="slide-indicator-0" onclick="goToDetailedWorkSlide(0)"></div>
+        <div class="w-2 h-2 rounded-full bg-brand-border transition-all cursor-pointer" id="slide-indicator-1" onclick="goToDetailedWorkSlide(1)"></div>
+        <div class="w-2 h-2 rounded-full bg-brand-border transition-all cursor-pointer" id="slide-indicator-2" onclick="goToDetailedWorkSlide(2)"></div>
+    </div>
+</div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-8 md:space-y-10">
+                <div class="mb-8 md:mb-12">
+                    <span class="text-brand-orange font-bold uppercase tracking-widest text-[8px] md:text-xs mb-2 block">Our Network</span>
+                    <h2 class="font-display text-2xl sm:text-3xl md:text-5xl text-brand-charcoal mb-3 md:mb-4">Restaurant Partners</h2>
+                    <p class="text-brand-charcoal/80 max-w-2xl text-xs sm:text-base md:text-lg leading-relaxed">The professional kitchens that have opened their doors to the M4M movement.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 md:gap-3">
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">The Nutcracker</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">El Mercado</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">The Table</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Tertulia</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Woodside Inn</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">The Clearing House</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Sequel</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Mag St. Kitchen</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Masala Library</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Pa Pa Ya</div>
+                    <div class="px-4 sm:px-6 py-2 md:py-3 rounded-lg md:rounded-xl border border-brand-border font-display text-sm md:text-lg text-brand-charcoal hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 cursor-default">Kala Ghoda Cafe</div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-12 md:pb-24">
+                <div class="bg-brand-charcoal text-white rounded-2xl md:rounded-[3rem] p-6 sm:p-10 md:p-16 text-center space-y-6 md:space-y-10 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10 max-w-2xl mx-auto space-y-4 md:space-y-6">
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-5xl leading-tight">Want to help us grow our impact?</h3>
+                        <p class="text-white/60 text-sm md:text-lg max-w-xl mx-auto">We're looking for partners, restaurateurs, and volunteers who want to change how Mumbai thinks about food and charity.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 relative z-10">
+                        <button onclick="window.location.href='mailto:masterchef4many@gmail.com?subject=I want to help'" class="h-11 sm:h-12 md:h-14 px-6 md:px-8 text-xs md:text-sm rounded-full bg-white text-brand-charcoal font-bold hover:bg-brand-orange hover:text-white transition-all flex items-center gap-2 group">
+                            Reach Out via Email <i data-lucide="mail" class="w-3 h-3 md:w-4 md:h-4"></i>
+                        </button>
+                        <button onclick="window.open('https://wa.me/919820167166', '_blank')" class="h-11 sm:h-12 md:h-14 px-6 md:px-8 text-xs md:text-sm bg-emerald-600 text-white hover:bg-emerald-700 border-none rounded-full font-bold transition-all flex items-center gap-2 group">
+                            WhatsApp Us <i data-lucide="phone" class="w-3 h-3 md:w-4 md:h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FOUNDERS PAGE -->
+        <div id="page-founders" class="page-content">
+            <header class="relative min-h-[280px] sm:min-h-[380px] md:min-h-[450px] flex items-center justify-center bg-brand-orange-light pt-16 sm:pt-24 md:pt-32 pb-8 md:pb-12">
+                <img src="https://static.wixstatic.com/media/6c293b_64522503f9d14946923cde9c7ffa2141~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_64522503f9d14946923cde9c7ffa2141~mv2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 block md:hidden" loading="lazy" decoding="async">
+                <img src="https://static.wixstatic.com/media/6c293b_64522503f9d14946923cde9c7ffa2141~mv2.jpg/v1/fill/w_1898,h_550,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_64522503f9d14946923cde9c7ffa2141~mv2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 hidden md:block" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/10 via-white/40 to-white"></div>
+                <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto founders-page-banner">
+                    <span class="inline-block px-3 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-3 md:mb-4">Our Leadership</span>
+                    <h1 class="text-3xl sm:text-5xl md:text-8xl font-display text-brand-charcoal">Meet the <br />Founders</h1>
+                    <p class="text-sm sm:text-base md:text-xl max-w-2xl mx-auto text-brand-charcoal/70 font-medium px-2">Driven by a passion for culinary excellence and a heart for service, our founders are dedicated to nourishing Mumbai's future.</p>
+                </div>
+            </header>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 md:gap-16 py-12 md:py-24">
+                <div class="text-center space-y-6 md:space-y-8 flex flex-col items-center">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden shadow-2xl group relative">
+                        <img src="https://static.wixstatic.com/media/6c293b_d1bc56a8b8624128977a40b553851beb~mv2.png/v1/fill/w_640,h_640,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_d1bc56a8b8624128977a40b553851beb~mv2.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                    </div>
+                    <div class="space-y-3 md:space-y-4 max-w-sm">
+                        <div class="space-y-1 md:space-y-2">
+                            <h3 class="font-display text-2xl sm:text-3xl md:text-4xl text-brand-charcoal">Anupama Dalmia</h3>
+                            <span class="text-brand-orange font-bold uppercase tracking-[0.15em] text-[8px] md:text-xs">Fundraising and project co-ordinator</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed text-[12px] sm:text-xs md:text-base">Anupama leads our strategic outreach and community building. Her multi-award winning background in service helps M4M bridge the gap between Mumbai's resourceful families and the underprivileged communities.</p>
+                    </div>
+                </div>
+                <div class="text-center space-y-6 md:space-y-8 flex flex-col items-center">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden shadow-2xl group relative">
+                        <img src="https://static.wixstatic.com/media/6c293b_9cdd86df173d4969bf69bfbab79fbd89~mv2.jpg/v1/fill/w_640,h_640,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_9cdd86df173d4969bf69bfbab79fbd89~mv2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                    </div>
+                    <div class="space-y-3 md:space-y-4 max-w-sm">
+                        <div class="space-y-1 md:space-y-2">
+                            <h3 class="font-display text-2xl sm:text-3xl md:text-4xl text-brand-charcoal">Dev Dalmia</h3>
+                            <span class="text-brand-orange font-bold uppercase tracking-[0.15em] text-[8px] md:text-xs">Co-founder & tech head <br> (Junior Masterchef)</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed text-[12px] sm:text-xs md:text-base">Dev's vision for M4M was born from a passion for cooking and a deep commitment to giving. He orchestrates our city-wide food drives and restaurant collaborations.</p>
+                        <div class="pt-3 md:pt-4 flex justify-center">
+                            <a href="https://www.linkedin.com/in/devdalmia/" target="_blank" class="border border-brand-charcoal/30 px-6 md:px-8 py-2 text-brand-charcoal hover:bg-brand-charcoal hover:text-white transition-all text-[11px] md:text-sm font-medium tracking-wide flex items-center gap-2 rounded-md">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center space-y-6 md:space-y-8 flex flex-col items-center">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden shadow-2xl group relative">
+                        <img src="https://static.wixstatic.com/media/6c293b_0bc62da668d24e1195057f0ac2295429~mv2.png/v1/fill/w_640,h_640,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_0bc62da668d24e1195057f0ac2295429~mv2.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
+                    </div>
+                    <div class="space-y-3 md:space-y-4 max-w-sm">
+                        <div class="space-y-1 md:space-y-2">
+                            <h3 class="font-display text-2xl sm:text-3xl md:text-4xl text-brand-charcoal">Miraya Dalmia</h3>
+                            <span class="text-brand-orange font-bold uppercase tracking-[0.15em] text-[8px] md:text-xs">Co-Founder & Head of projects <br>(Junior MasterChef)</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed text-[12px] sm:text-xs md:text-base">Miraya brings the 'MasterChef' magic to the streets. She experiments with global flavors to show her 'little buddies' that food can be both nutritious and an adventurous wonder.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Family Philosophy -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-12 md:pb-24">
+                <div class="bg-brand-orange-light text-brand-charcoal rounded-2xl md:rounded-[3rem] p-6 sm:p-10 md:p-16 text-center space-y-6 md:space-y-10 relative overflow-hidden border border-brand-border">
+                    <div class="max-w-3xl mx-auto relative z-10 space-y-6 md:space-y-8">
+                        <i data-lucide="heart" class="w-10 h-10 md:w-12 md:h-12 text-brand-orange mx-auto fill-brand-orange animate-pulse"></i>
+                        <h2 class="font-display text-2xl sm:text-3xl md:text-5xl leading-tight">"M4M is more than a project; it's our family's promise to share the joy of food with every child in Mumbai."</h2>
+                        <p class="text-brand-charcoal/60 md:text-lg font-medium text-sm sm:text-base">– The Dalmia Family</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRESS PAGE -->
+        <div id="page-press" class="page-content">
+            <header class="relative min-h-[280px] sm:min-h-[380px] md:min-h-[450px] flex items-center justify-center bg-brand-orange-light pt-16 sm:pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden">
+                <img src="https://static.wixstatic.com/media/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover opacity-60 block md:hidden" loading="lazy" decoding="async">
+                <img src="https://static.wixstatic.com/media/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg/v1/fill/w_1898,h_550,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_cb7fb7fdd0a243818bcee9592076292d~mv2.jpeg" class="absolute inset-0 w-full h-full object-cover opacity-60 hidden md:block" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/10 via-white/40 to-white"></div>
+                <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto press-page-banner">
+                    <span class="inline-block px-3 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-3 md:mb-4">In the News</span>
+                    <h1 class="text-3xl sm:text-5xl md:text-8xl font-display text-brand-charcoal">Making Global <br />Headlines</h1>
+                    <p class="text-sm sm:text-base md:text-xl max-w-2xl mx-auto text-brand-charcoal/70 font-medium px-2">Our mission has resonated across borders, from local Mumbai dailies to international awards.</p>
+                </div>
+            </header>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-24 space-y-12 md:space-y-24">
+                <div class="max-w-3xl">
+                    <span class="text-brand-orange font-bold text-[8px] md:text-xs uppercase tracking-widest block mb-3 md:mb-4">MasterChef4Many in the News</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-display tracking-tight leading-tight">Sharing our mission with the world</h2>
+                    <p class="text-gray-500 text-xs sm:text-base md:text-lg mt-3 md:mt-4 leading-relaxed">Our journey has been featured in leading publications for redefining charity through quality, love, and gourmet cooking.</p>
+                </div>
+
+                <!-- Recognition Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <div class="p-6 sm:p-8 rounded-xl md:rounded-[2rem] bg-white shadow-xl shadow-brand-charcoal/5 border border-brand-border space-y-4 md:space-y-6 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange"><i data-lucide="award" class="w-4 h-4 md:w-5 md:h-5"></i></div>
+                            <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-brand-orange/40">Hall of Fame</span>
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl text-brand-charcoal leading-tight uppercase font-black italic">The Diana Award</h3>
+                        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">"National Award for Social Action & Humanitarian Work by the Diana Foundation."</p>
+                    </div>
+                    <div class="p-6 sm:p-8 rounded-xl md:rounded-[2rem] bg-white shadow-xl shadow-brand-charcoal/5 border border-brand-border space-y-4 md:space-y-6 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange"><i data-lucide="award" class="w-4 h-4 md:w-5 md:h-5"></i></div>
+                            <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-brand-orange/40">Featured</span>
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl text-brand-charcoal leading-tight uppercase font-black italic">Free Press Journal</h3>
+                        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">"Featured for Youth Empowerment & Community Service in Mumbai."</p>
+                    </div>
+                    <div class="p-6 sm:p-8 rounded-xl md:rounded-[2rem] bg-white shadow-xl shadow-brand-charcoal/5 border border-brand-border space-y-4 md:space-y-6 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange"><i data-lucide="award" class="w-4 h-4 md:w-5 md:h-5"></i></div>
+                            <span class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-brand-orange/40">Featured</span>
+                        </div>
+                        <h3 class="font-display text-lg md:text-xl text-brand-charcoal leading-tight uppercase font-black italic">Mid-Day</h3>
+                        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">"Teenage home chef combines his love for gourmet cooking with a mission to feed Mumbai's less-privileged children."</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- INVOLVED PAGE -->
+        <div id="page-involved" class="page-content">
+            <header class="relative min-h-[280px] sm:min-h-[380px] md:min-h-[450px] flex items-center justify-center bg-brand-orange-light pt-16 sm:pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden">
+                <img src="https://static.wixstatic.com/media/6c293b_2a57b057a7934a5bbcb2b59cd43312a3~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_2a57b057a7934a5bbcb2b59cd43312a3~mv2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 block md:hidden" loading="lazy" decoding="async">
+                <img src="https://static.wixstatic.com/media/6c293b_2a57b057a7934a5bbcb2b59cd43312a3~mv2.jpg/v1/fill/w_1898,h_550,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6c293b_2a57b057a7934a5bbcb2b59cd43312a3~mv2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 hidden md:block" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/10 via-white/40 to-white"></div>
+                <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto get-involved-banner">
+                    <span class="inline-block px-3 py-2 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-3 md:mb-4">Get Involved</span>
+                    <h1 class="text-3xl sm:text-5xl md:text-8xl font-display text-brand-charcoal leading-tight">Three Ways <br>You Can Help</h1>
+                    <p class="text-xs sm:text-base md:text-xl max-w-2xl mx-auto text-brand-charcoal/70 font-medium px-2">There are three ways to be part of MasterChef4Many. Every one of them changes a life.</p>
+                </div>
+            </header>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-24 space-y-12 md:space-y-24">
+                <!-- Three Ways You Can Help -->
+                <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="font-display text-4xl md:text-6xl text-brand-orange/20">01</div>
+                        <h3 class="font-display text-2xl md:text-3xl">Donate a Meal</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">Your contribution sponsors nutritious meals. Every rupee goes directly to feeding children.</p>
+                        <button onclick="window.open('https://pages.razorpay.com/masterchef4many', '_blank')" class="w-full bg-brand-orange text-white h-12 md:h-14 rounded-lg md:rounded-md font-bold hover:bg-brand-orange/90 transition-all flex items-center justify-center gap-2 text-sm md:text-base">Donate Now <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                    </div>
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="font-display text-4xl md:text-6xl text-brand-orange/20">02</div>
+                        <h3 class="font-display text-2xl md:text-3xl">Cook with Us</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">Cook at home and we'll collect from Cuffe Parade to Worli every weekend.</p>
+                        <button onclick="window.location.href = 'mailto:masterchef4many@gmail.com?subject=Joining Weekend Network'" class="w-full border-2 border-brand-orange text-brand-orange h-12 md:h-14 rounded-lg md:rounded-md font-bold hover:bg-brand-orange/5 transition-all flex items-center justify-center gap-2 text-xs md:text-base"><i data-lucide="mail" class="w-4 h-4"></i> Join Network</button>
+                    </div>
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="font-display text-4xl md:text-6xl text-brand-orange/20">03</div>
+                        <h3 class="font-display text-2xl md:text-3xl">Spread the Word</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">Follow our journey, share our stories, and help us grow our family.</p>
+                        <button onclick="window.open('https://www.instagram.com/masterchef4many/', '_blank')" class="w-full border-2 border-brand-orange text-brand-orange h-12 md:h-14 rounded-lg md:rounded-md font-bold hover:bg-brand-orange/5 transition-all flex items-center justify-center gap-2 text-xs md:text-base"><i data-lucide="instagram" class="w-4 h-4"></i> Follow Us</button>
+                    </div>
+                </div>
+
+                <!-- M4M Moments Carousel -->
+                <section class="max-w-7xl mx-auto px-2 sm:px-0 py-2 md:py-4 space-y-8 md:space-y-10">
+                    <div class="max-w-2xl mx-auto text-center">
+                        <span class="text-brand-orange font-bold uppercase tracking-widest text-[8px] md:text-xs mb-2 md:mb-3 block">Behind The Scenes</span>
+                        <h2 class="font-display text-2xl sm:text-3xl md:text-5xl text-brand-charcoal tracking-tight leading-tight">Moments from <span class="text-brand-orange italic">our kitchens</span></h2>
+                        <p class="text-gray-500 text-xs sm:text-base mt-3 md:mt-4 leading-relaxed">A glimpse into the cookouts, drives, and smiles that power masterchef4many.</p>
+                    </div>
+
+                    <div id="m4m-marquee-wrap" class="relative overflow-hidden -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0">
+                        <!-- Edge fade masks -->
+                        <div class="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-16 md:w-32 z-10" style="background:linear-gradient(to right, #FBF6EF, transparent);"></div>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-16 md:w-32 z-10" style="background:linear-gradient(to left, #FBF6EF, transparent);"></div>
+
+                        <div id="m4m-track" class="flex gap-3 md:gap-5 w-max"></div>
+                    </div>
+                </section>
+
+                <!-- Let's Connect -->
+                <section class="bg-brand-charcoal text-white rounded-2xl md:rounded-3xl pt-12 md:pt-16 pb-10 md:pb-12 px-6 sm:px-10 md:px-12">
+                    <div class="grid lg:grid-cols-2 gap-10 md:gap-12 items-start">
+                        <div class="space-y-6 md:space-y-8">
+                            <h2 class="font-display text-3xl md:text-5xl">Let's connect</h2>
+                            <div class="space-y-4 md:space-y-6 overflow-hidden">
+                                <div class="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-full flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors shrink-0">
+                                        <i data-lucide="mail" class="w-4 h-4 md:w-5 md:h-5"></i>
+                                    </div>
+                                    <div onclick="window.open('mailto:masterchef4many@gmail.com')" class="min-w-0 cursor-pointer">
+                                        <div class="text-[9px] md:text-xs text-white/40 uppercase tracking-widest font-bold">Email</div>
+                                        <div class="text-sm md:text-lg break-all sm:truncate">masterchef4many@gmail.com</div>
+                                    </div>
+                                </div>
+                                <div onclick="window.open('https://wa.me/919820167166', '_blank')" class="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-600/10 rounded-full flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+                                        <i data-lucide="phone" class="w-4 h-4 md:w-5 md:h-5"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="text-[9px] md:text-xs text-white/40 uppercase tracking-widest font-bold">WhatsApp</div>
+                                        <div class="text-sm md:text-lg">+91 98201 67166</div>
+                                    </div>
+                                </div>
+                                <div onclick="window.open('https://www.instagram.com/masterchef4many/', '_blank')" class="flex items-center gap-4 group cursor-pointer hover:translate-x-2 transition-transform">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-full flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 md:w-5 md:h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="text-[9px] md:text-xs text-white/40 uppercase tracking-widest font-bold">Instagram</div>
+                                        <div class="text-sm md:text-lg">@masterchef4many</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aspect-square lg:aspect-auto bg-white/5 rounded-xl md:rounded-2xl border border-white/10 flex items-center justify-center p-6 sm:p-10 md:p-12 text-center hover:bg-white/[0.08] transition-colors">
+                            <div class="space-y-4 md:space-y-6">
+                                <i data-lucide="target" class="w-10 h-10 md:w-16 md:h-16 text-brand-orange mx-auto"></i>
+                                <h3 class="font-display text-xl md:text-3xl">Corporate Sponsorship</h3>
+                                <p class="text-white/60 text-xs md:text-base leading-relaxed">Interested in sponsoring a full day of the Children Nutrition Project? We provide nutritious meals to 500 children daily.</p>
+                                <button onclick="window.location.href = 'mailto:masterchef4many@gmail.com?subject=Corporate Sponsorship Inquiry'" class="mx-auto bg-white text-brand-orange px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-xs md:text-sm tracking-tight hover:bg-white/90 transition-all shadow-xl cursor-pointer">Contact Us</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Meal Sponsorship Section -->
+                <section class="bg-brand-orange-light p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl border border-brand-orange/20">
+                    <div class="max-w-4xl mx-auto space-y-4 md:space-y-6 text-center">
+                        <i data-lucide="heart" class="w-10 h-10 md:w-12 md:h-12 text-brand-orange mx-auto"></i>
+                        <h2 class="font-display text-2xl md:text-4xl text-brand-charcoal">Understanding Meal Sponsorship</h2>
+                        <div class="space-y-3 md:space-y-4 text-gray-700 leading-relaxed italic text-xs sm:text-sm md:text-lg text-left">
+                            <p>
+                                Every donation to MasterChef4Many is tracked directly to meal procurement and distribution. 
+                                Our <strong>Razorpay integration</strong> ensures a secure and frictionless donation process.
+                            </p>
+                            <p>
+                                <strong>Corporate & Group Sponsors:</strong> You can sponsor a <em>Full CNP Day</em> which provides 
+                                500 children with a complete nutritious lunch plus seasonal fruits.
+                            </p>
+                            <p>
+                                <strong>Home Cooks:</strong> Beyond financial contributions, our weekend pickup network is the backbone 
+                                of our community reach. By cooking at home, you provide the personal touch of a parent's tiffin.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-cream py-12 md:py-20 px-4 sm:px-10 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
+            <div class="space-y-4 md:space-y-6 max-w-sm">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-display text-2xl md:text-3xl tracking-tight leading-none text-brand-charcoal">masterchef4many</span>
+                    <span class="font-sans text-[10px] md:text-[12px] font-bold tracking-tight text-brand-charcoal/90">good food for everyone</span>
+                </div>
+                <p class="text-brand-charcoal/50 text-xs md:text-base leading-relaxed">Nourishing souls through the power of dignity and gourmet joy since 2017.</p>
+                <div class="flex gap-3">
+                    <a href="https://www.instagram.com/masterchef4many/" target="_blank" rel="noreferrer" class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-orange-light flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white transition-all cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 md:w-5 md:h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+                    <a href="mailto:masterchef4many@gmail.com" class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-orange-light flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white transition-all cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 md:w-5 md:h-5"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg></a>
+                    <a href="https://wa.me/919820167166" target="_blank" rel="noreferrer" class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-brand-orange-light flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white transition-all cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 md:w-5 md:h-5"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg></a>
+                </div>
+            </div>
+            <div class="flex gap-12 md:gap-16">
+                <div class="space-y-3 md:space-y-4">
+                    <h4 class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-brand-orange">Explore</h4>
+                    <div class="flex flex-col gap-2 md:gap-3">
+                        <button onclick="showPage('home')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Home</button>
+                        <button onclick="showPage('story')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Our Story</button>
+                        <button onclick="showPage('cookouts')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Projects</button>
+                        <button onclick="showPage('founders')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Founders</button>
+                        <button onclick="showPage('press')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Press</button>
+                        <button onclick="showPage('involved')" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange text-left capitalize">Get Involved</button>
+                    </div>
+                </div>
+                <div class="space-y-3 md:space-y-4">
+                    <h4 class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-brand-orange">Contact</h4>
+                    <div class="flex flex-col gap-2 md:gap-3">
+                        <a href="https://instagram.com/masterchef4many" target="_blank" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange transition-colors">Instagram</a>
+                        <a href="mailto:masterchef4many@gmail.com" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange transition-colors">Email Us</a>
+                        <a href="https://wa.me/919820167166" target="_blank" class="text-[11px] md:text-xs font-semibold text-brand-charcoal/60 hover:text-brand-orange transition-colors">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 md:mt-20 pt-8 md:pt-10 border-t border-brand-border text-center text-[9px] font-bold uppercase tracking-[0.3em] text-brand-charcoal/20">© 2026 MasterChef4Many. All Rights Reserved.</div>
+    </footer>
+
+    <!-- Cookout Modal -->
+    <div id="cookout-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-12 overflow-y-auto">
+        <div class="fixed inset-0 bg-brand-charcoal/90 backdrop-blur-md" onclick="closeCookoutModal()"></div>
+        <div id="cookout-modal-content" class="relative z-[210] w-full flex justify-center"></div>
+    </div>
+
+    <script>
+        // --- Main JavaScript (Same as before, unchanged) ---
+        const cooksData = [
+            {
+                id: "Cook #1",
+                date: "20-22 Nov 2018",
+                event: "The Nutcracker x Angel Xpress",
+                description: "Our first professional kitchen cookout serving 74 children a gourmet pasta feast.",
+                fullDescription: "Taking our vision to a professional level, we partnered with Annie Bhasin at The Nutcracker. For three days, we prepped in a commercial kitchen to serve 74 children from Angel Xpress. This wasn't just a meal; it was an introduction to professional culinary standards.",
+                image: "https://static.wixstatic.com/media/6c293b_64522503f9d14946923cde9c7ffa2141~mv2.jpg",
+                menu: "Creamy Fusilli in pink sauce, Garlic Bread, and Chocolate Chip Cookies",
+                impact: "First large-scale structured cookout",
+                stats: ["74 Children", "Cuffe Parade"]
+            }
+        ];
+
+        function openCookoutModal(idx) {
+            const cook = cooksData[idx];
+            const modal = document.getElementById('cookout-modal');
+            const content = document.getElementById('cookout-modal-content');
+            
+            content.innerHTML = `
+                <div class="bg-white w-full max-w-5xl rounded-2xl md:rounded-[3rem] overflow-hidden relative shadow-2xl flex flex-col md:flex-row max-h-[95vh] md:max-h-[85vh]">
+                    <button onclick="closeCookoutModal()" class="absolute top-3 right-3 md:top-6 md:right-6 w-9 h-9 md:w-12 md:h-12 bg-white/20 hover:bg-brand-orange text-white rounded-full flex items-center justify-center transition-colors z-[110] backdrop-blur-md">
+                        <i data-lucide="x" class="w-4 h-4 md:w-6 md:h-6"></i>
+                    </button>
+
+                    <div class="md:w-1/2 relative min-h-[150px] md:min-h-[400px] shrink-0">
+                        <img src="${cook.image}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-3 left-3 md:bottom-8 md:left-8">
+                            <span class="px-3 py-1.5 md:px-4 md:py-2 bg-brand-orange text-white rounded-full text-[8px] md:text-[10px] font-bold uppercase tracking-widest">
+                                ${cook.id}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2 p-5 sm:p-8 md:p-12 overflow-y-auto space-y-5 md:space-y-8 bg-brand-cream/10">
+                        <div class="space-y-2 md:space-y-4">
+                            <div class="flex items-center gap-2 text-brand-orange font-bold text-[9px] md:text-sm uppercase tracking-widest font-sans">
+                                <i data-lucide="calendar" class="w-3 h-3 md:w-4 md:h-4"></i> ${cook.date}
+                            </div>
+                            <h2 class="font-display text-xl md:text-4xl text-brand-charcoal">${cook.event}</h2>
+                        </div>
+
+                        <div class="space-y-4 md:space-y-6">
+                            <p class="text-gray-600 leading-relaxed text-xs md:text-lg">${cook.fullDescription}</p>
+                            
+                            <div class="grid grid-cols-2 gap-2 md:gap-4">
+                                <div class="p-2 md:p-4 rounded-lg md:rounded-2xl bg-white border border-brand-border flex items-center gap-2 md:gap-3">
+                                    <div class="w-5 h-5 md:w-8 md:h-8 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange shrink-0">
+                                        <i data-lucide="users" class="w-3 h-3 md:w-4 md:h-4"></i>
+                                    </div>
+                                    <span class="text-[10px] md:text-sm font-bold text-brand-charcoal uppercase tracking-widest leading-none">${cook.stats[0]}</span>
+                                </div>
+                                <div class="p-2 md:p-4 rounded-lg md:rounded-2xl bg-white border border-brand-border flex items-center gap-2 md:gap-3">
+                                    <div class="w-5 h-5 md:w-8 md:h-8 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange shrink-0">
+                                        <i data-lucide="map-pin" class="w-3 h-3 md:w-4 md:h-4"></i>
+                                    </div>
+                                    <span class="text-[10px] md:text-sm font-bold text-brand-charcoal uppercase tracking-widest leading-none">${cook.stats[1]}</span>
+                                </div>
+                            </div>
+
+                            <div class="p-3 md:p-6 rounded-xl md:rounded-3xl bg-brand-orange/5 border border-brand-orange/10 space-y-2 md:space-y-3">
+                                <div class="flex items-center gap-2 text-brand-orange">
+                                    <i data-lucide="utensils" class="w-4 h-4"></i>
+                                    <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">The MasterChef Menu</span>
+                                </div>
+                                <p class="text-brand-charcoal font-medium text-[11px] md:text-base">${cook.menu}</p>
+                            </div>
+
+                            <div class="p-3 md:p-6 rounded-xl md:rounded-3xl bg-emerald-50 border border-emerald-100 space-y-2 md:space-y-3">
+                                <div class="flex items-center gap-2 text-emerald-600">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">The Impact</span>
+                                </div>
+                                <p class="text-emerald-800 font-medium italic opacity-80 text-[11px] md:text-base">"${cook.impact}"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeCookoutModal() {
+            const modal = document.getElementById('cookout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                    link.classList.remove('text-brand-charcoal/60');
+                } else {
+                    link.classList.remove('active');
+                    link.classList.add('text-brand-charcoal/60');
+                }
+            });
+
+            window.scrollTo(0, 0);
+            toggleMobileMenu(false);
+            lucide.createIcons();
+            observeReveals();
+        }
+
+        function toggleMobileMenu(isOpen) {
+            const menu = document.getElementById('mobile-menu');
+            const sidebar = document.getElementById('mobile-sidebar');
+            if (isOpen) {
+                menu.classList.remove('hidden');
+                setTimeout(() => sidebar.style.transform = 'translateX(0)', 10);
+            } else {
+                sidebar.style.transform = 'translateX(100%)';
+                setTimeout(() => menu.classList.add('hidden'), 500);
+            }
+        }
+
+        function playVideo(container, driveId) {
+            container.innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview?autoplay=1" allow="autoplay" allowfullscreen class="w-full h-full border-0"></iframe>`;
+        }
+
+        const visionImages = [
+            "https://static.wixstatic.com/media/6c293b_a9dc4fd93a0e4ffea4ff38fd24f949ad~mv2.jpeg",
+            "https://static.wixstatic.com/media/6c293b_9b4bfa6570754c12ae7cc700d3061642~mv2.jpg",
+            "https://static.wixstatic.com/media/6c293b_7c64f45154ea490786ef558071923e65~mv2.jpg"
+        ];
+
+        function setVisionSlide(idx) {
+            const btns = document.querySelectorAll('.vision-btn');
+            const slides = document.querySelectorAll('.vision-slide');
+            const img = document.getElementById('vision-image');
+
+            btns.forEach(b => b.classList.remove('active'));
+            slides.forEach(s => s.classList.add('hidden'));
+            
+            btns[idx].classList.add('active');
+            slides[idx].classList.remove('hidden');
+            
+            if (img) {
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = visionImages[idx];
+                    img.style.opacity = '1';
+                }, 300);
+            }
+        }
+
+        let detailedWorkIndex = 0;
+        function nextDetailedWorkSlide() {
+            const slides = document.querySelectorAll('.detailed-work-slide');
+            slides[detailedWorkIndex].classList.add('hidden');
+            slides[detailedWorkIndex].classList.remove('active');
+            
+            detailedWorkIndex = (detailedWorkIndex + 1) % slides.length;
+            
+            slides[detailedWorkIndex].classList.remove('hidden');
+            slides[detailedWorkIndex].classList.add('active');
+        }
+
+        function prevDetailedWorkSlide() {
+            const slides = document.querySelectorAll('.detailed-work-slide');
+            slides[detailedWorkIndex].classList.add('hidden');
+            slides[detailedWorkIndex].classList.remove('active');
+            
+            detailedWorkIndex = (detailedWorkIndex - 1 + slides.length) % slides.length;
+            
+            slides[detailedWorkIndex].classList.remove('hidden');
+            slides[detailedWorkIndex].classList.add('active');
+        }
+
+        function animateCounter(el, target, suffix) {
+            const duration = 1500;
+            let startTime = null;
+
+            function step(timestamp) {
+                if (startTime === null) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const current = Math.floor(progress * target);
+                el.innerText = current.toLocaleString() + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.innerText = target.toLocaleString() + suffix;
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        // Throttled with rAF: a raw scroll listener can fire dozens of times per
+        // second, and re-reading layout (getBoundingClientRect for every .reveal
+        // element) on each one is what makes the page feel sluggish/slow to load.
+        let scrollTicking = false;
+        function onScrollFrame() {
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalScroll > 0) {
+                const progress = (window.scrollY / totalScroll) * 100;
+                document.getElementById('progress-bar').style.width = progress + '%';
+            }
+
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-white/80', 'backdrop-blur-xl', 'py-2', 'shadow-sm', 'border-b', 'border-brand-border/10');
+                nav.classList.remove('bg-brand-orange-light', 'py-3', 'md:py-6');
+            } else {
+                nav.classList.remove('bg-white/80', 'backdrop-blur-xl', 'py-2', 'shadow-sm', 'border-b', 'border-brand-border/10');
+                nav.classList.add('bg-brand-orange-light', 'py-3', 'md:py-6');
+            }
+            scrollTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!scrollTicking) {
+                requestAnimationFrame(onScrollFrame);
+                scrollTicking = true;
+            }
+        }, { passive: true });
+
+        // Reveal-on-scroll is handled by IntersectionObserver instead of a scroll
+        // listener that re-measures every .reveal element's position on every frame.
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        function observeReveals() {
+            document.querySelectorAll('.reveal:not(.active)').forEach(r => revealObserver.observe(r));
+        }
+
+        const observerOptions = { threshold: 0.5 };
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const val = parseInt(el.getAttribute('data-val'));
+                    const suffix = el.getAttribute('data-suffix');
+                    const counterEl = el.querySelector('.counter');
+                    animateCounter(counterEl, val, suffix);
+                    statsObserver.unobserve(el);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            showPage('home');
+        });
+    </script>
+
+    <script>
+        (function () {
+            const M4M_SLIDES = [
+                { src: 'images/1.jpg' },
+                { src: 'images/2.jpg' },
+                { src: 'images/3.jpg' },
+                { src: 'images/4.jpg' },
+                { src: 'images/5.jpg' },
+                { src: 'images/6.jpg' },
+                { src: 'images/7.jpg' },
+                { src: 'images/8.jpg' },
+                { src: 'images/9.jpg' },
+                { src: 'images/10.jpg' },
+                { src: 'images/11.jpg' },
+                { src: 'images/12.jpg' },
+            ];
+
+            const track = document.getElementById('m4m-track');
+            if (!track) return;
+
+            function buildCard(slide) {
+                const card = document.createElement('div');
+                card.className = 'm4m-card group relative rounded-2xl overflow-hidden shadow-lg aspect-[3/4]';
+                card.innerHTML = `<img src="${slide.src}" alt="masterchef4many moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">`;
+                return card;
+            }
+
+            [...M4M_SLIDES, ...M4M_SLIDES].forEach((slide) => {
+                track.appendChild(buildCard(slide));
+            });
+        })();
+    </script>
+    <script>
+(function () {
+    var swipeArea = document.getElementById('detailed-work-swipe');
+    if (!swipeArea) return;
+
+    var startX = 0;
+    var startY = 0;
+    var isSwiping = false;
+
+    swipeArea.addEventListener('touchstart', function (e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwiping = true;
+    }, { passive: true });
+
+    swipeArea.addEventListener('touchend', function (e) {
+        if (!isSwiping) return;
+        isSwiping = false;
+
+        var endX = e.changedTouches[0].clientX;
+        var endY = e.changedTouches[0].clientY;
+        var diffX = startX - endX;
+        var diffY = startY - endY;
+
+        // Ignore mostly-vertical scrolls, require a real horizontal swipe
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                if (typeof nextDetailedWorkSlide === 'function') nextDetailedWorkSlide();
+            } else {
+                if (typeof prevDetailedWorkSlide === 'function') prevDetailedWorkSlide();
+            }
+        }
+    }, { passive: true });
+})();
+
+// Direct navigation from the dot indicators
+function goToDetailedWorkSlide(index) {
+    var slides = document.querySelectorAll('.detailed-work-slide');
+    var current = -1;
+    slides.forEach(function (s, i) {
+        if (s.classList.contains('active')) current = i;
+    });
+    if (current === -1 || index === current) return;
+
+    var diff = index - current;
+    var steps = Math.abs(diff);
+    for (var i = 0; i < steps; i++) {
+        if (diff > 0) {
+            if (typeof nextDetailedWorkSlide === 'function') nextDetailedWorkSlide();
+        } else {
+            if (typeof prevDetailedWorkSlide === 'function') prevDetailedWorkSlide();
+        }
+    }
+}
+</script>
+</body>
+</html>

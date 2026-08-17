@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #B34522;
+  --color-brand-dark-orange: #FDE2DC;
+  --color-brand-cream: #FDF9F9;
+  --color-brand-charcoal: #1A1A1A;
+  --color-brand-orange-light: #FDE2DC;
+  --color-brand-border: #F3D0C9;
+
+  --font-display: "DM Serif Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+}
+
+body {
+  @apply font-sans bg-brand-cream text-brand-charcoal;
+}
+
+@utility scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
