@@ -276,7 +276,7 @@
                     </div>
                                         <div class="stat-item flex flex-col items-center text-center" data-val="250" data-suffix="+">
                         <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
-                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Volunteer Family</div>
+                        <div class="text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-brand-charcoal/40 pt-1">Volunteer Families</div>
                     </div>
                                         <div class="stat-item flex flex-col items-center text-center" data-val="350" data-suffix="">
                         <div class="counter font-display text-2xl sm:text-4xl md:text-6xl font-black text-brand-charcoal tracking-tighter">0</div>
@@ -1315,16 +1315,24 @@ We met Anju, I girl with a growth disorder that prevented her from gaining heigh
         function animateCounter(el, target, suffix) {
             const duration = 1500;
             let startTime = null;
+            // Keep one decimal place when the target is not a whole number
+            const decimals = Number.isInteger(target) ? 0 : 1;
+            const format = (v) => v.toLocaleString(undefined, {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }) + suffix;
 
             function step(timestamp) {
                 if (startTime === null) startTime = timestamp;
                 const progress = Math.min((timestamp - startTime) / duration, 1);
-                const current = Math.floor(progress * target);
-                el.innerText = current.toLocaleString() + suffix;
+                const current = decimals === 0
+                    ? Math.floor(progress * target)
+                    : Math.floor(progress * target * 10) / 10;
+                el.innerText = format(current);
                 if (progress < 1) {
                     requestAnimationFrame(step);
                 } else {
-                    el.innerText = target.toLocaleString() + suffix;
+                    el.innerText = format(target);
                 }
             }
             requestAnimationFrame(step);
@@ -1379,7 +1387,7 @@ We met Anju, I girl with a growth disorder that prevented her from gaining heigh
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const el = entry.target;
-                    const val = parseInt(el.getAttribute('data-val'));
+                    const val = parseFloat(el.getAttribute('data-val'));
                     const suffix = el.getAttribute('data-suffix');
                     const counterEl = el.querySelector('.counter');
                     animateCounter(counterEl, val, suffix);
